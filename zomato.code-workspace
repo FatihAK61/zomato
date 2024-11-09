@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"vscode-color-picker.languages": [
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"postcss",
+			"xml",
+			"html"
+		]
+	}
+}
