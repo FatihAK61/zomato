@@ -1,14 +1,21 @@
 import { Image, Platform, StatusBar, View } from 'react-native';
-import * as React from 'react';
+import React, { FC, useEffect } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { splashStyles } from '@unistyles/authStyles';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import CustomText from '@components/global/CustomText';
+import { resetAndNavigate } from '@utils/NavigationUtils';
 
-const SplashScreen: React.FC = () => {
+const SplashScreen: FC = () => {
 
   const { styles } = useStyles(splashStyles);
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      resetAndNavigate('LoginScreen');
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -24,8 +31,7 @@ const SplashScreen: React.FC = () => {
           variant='h5'
           style={styles.msgText}
           fontFamily='Okra-Medium'
-          color='#fff'
-        >Carbon and Plastic Neutral Delivers in Türkiye</CustomText>
+          color='#fff'>Carbon and Plastic Neutral Delivers in Türkiye !</CustomText>
       </Animated.View>
     </View>
   );
