@@ -32,9 +32,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - MMKV (2.0.0):
-    - MMKVCore (~> 2.0.0)
-  - MMKVCore (2.0.0)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1291,11 +1288,10 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-mmkv (2.12.2):
+  - react-native-mmkv (3.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
-    - MMKV (>= 1.3.3)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1971,8 +1967,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - lottie-ios
-    - MMKV
-    - MMKVCore
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -2138,8 +2132,6 @@ SPEC CHECKSUMS:
   hermes-engine: 46f1ffbf0297f4298862068dd4c274d4ac17a1fd
   lottie-ios: a881093fab623c467d3bce374367755c272bdd59
   lottie-react-native: 11758dbe03b5749b8139852912353559239b43c2
-  MMKV: f7d1d5945c8765f97f39c3d121f353d46735d801
-  MMKVCore: c04b296010fcb1d1638f2c69405096aac12f6390
   RCT-Folly: bf5c0376ffe4dd2cf438dcf86db385df9fdce648
   RCTDeprecation: fde92935b3caa6cb65cbff9fbb7d3a9867ffb259
   RCTRequired: 75c6cee42d21c1530a6f204ba32ff57335d19007
@@ -2170,7 +2162,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 3146a13424f9fec2ea1f1462d49d566e4d69b732
   React-microtasksnativemodule: 02d218c79c72d373a92a8552183f4ead0d1c6e05
   react-native-blur: 28b0a731ed804bed3e88757c2414305896e6b47e
-  react-native-mmkv: 90d4a43bce35c9bc21ba4c42c7977fbcf0e682ee
+  react-native-mmkv: bb0824bed68c01f7cc681eefa58059097bdaa796
   react-native-safe-area-context: 2500e4fe998caad50ad3bc51ec23ef951308569e
   react-native-unistyles: 8c56c43ee27d0a95824c02730147fc52fd37d06e
   React-nativeconfig: 93fe8c85a8c40820c57814e30f3e44b94c995a7b

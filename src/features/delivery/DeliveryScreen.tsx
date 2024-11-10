@@ -4,7 +4,7 @@ import React from 'react';
 const DeliveryScreen = () => {
     return (
         <View>
-            <Text>DeliveryScreen</Text>
+            <Text>Hello World !</Text>
         </View>
     );
 };

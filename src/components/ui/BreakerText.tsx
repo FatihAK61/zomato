@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import React, { FC } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { loginStyles } from '@unistyles/authStyles';
@@ -9,7 +9,7 @@ const BreakerText: FC<{ text: string }> = ({ text }) => {
     return (
         <View style={styles.breakerContainer}>
             <View style={styles.horizontalLine} />
-            <CustomText fontSize={12} fontFamily='Okra-Medium' style={styles.breakerText}>{text}</CustomText>
+            <CustomText fontSize={12} fontFamily="Okra-Medium" style={styles.breakerText}>{text}</CustomText>
             <View style={styles.horizontalLine} />
 
         </View>
@@ -17,5 +17,3 @@ const BreakerText: FC<{ text: string }> = ({ text }) => {
 };
 
 export default BreakerText;
-
-const styles = StyleSheet.create({});
