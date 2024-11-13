@@ -16,7 +16,6 @@ const RegularFoodList = () => {
         )
     }
 
-
     return (
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <FlatList

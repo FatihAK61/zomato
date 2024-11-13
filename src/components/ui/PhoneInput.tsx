@@ -13,7 +13,7 @@ interface PhoneInputProps {
     onBlur?: () => void;
 }
 
-const PhoneInput: FC<PhoneInputProps> = (value, onChangeText, onBlur, onFocus) => {
+const PhoneInput: FC<PhoneInputProps> = ({ value, onChangeText, onBlur, onFocus }) => {
     const { styles } = useStyles(phoneStyles);
     return (
         <View style={styles.container}>
