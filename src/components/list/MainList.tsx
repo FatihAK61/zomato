@@ -5,7 +5,10 @@ import RestaurantList from './RestaurantList';
 import { useStyles } from 'react-native-unistyles';
 import { restaurantStyles } from '@unistyles/restuarantStyles';
 import { useSharedState } from '@features/tabs/SharedContext';
-import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import BackToTopButton from '@components/ui/BackToTopButton';
+import { filtersOption } from '@utils/dummyData';
+import SortingAndFilters from '@components/home/SortingAndFilters';
 
 const sectionedData = [
     { title: "Explore", data: [{}], renderItem: () => <ExploreSection /> },
@@ -60,15 +63,20 @@ const MainList: FC = () => {
     const viewAbilityConfig = { viewAreaCoveragePercentThreshold: 80 };
     const onViewableItemsChanged = ({ viewableItems }: { viewableItems: Array<ViewToken> }) => {
         const restaurantVisible = viewableItems.some(
-            (item) => item?.section?.title === 'Restaurans' && item?.isViewable
+            (item) => item?.section?.title === "Restaurants" && item?.isViewable
         )
+        setIsRestaurantVisible(restaurantVisible)
     }
 
 
     return (
         <>
+            <Animated.View style={[styles.backToTopButton, backToTopStyle]}>
+                <BackToTopButton onPress={handleScrollToTop} />
+            </Animated.View>
             <SectionList
                 sections={sectionedData}
+                ref={sectionListRef}
                 overScrollMode='always'
                 onScroll={handleScroll}
                 scrollEventThrottle={16}
@@ -79,6 +87,16 @@ const MainList: FC = () => {
                 stickySectionHeadersEnabled={true}
                 viewabilityConfig={viewAbilityConfig}
                 onViewableItemsChanged={onViewableItemsChanged}
+                renderSectionHeader={({ section }) => {
+                    if (section.title !== "Restaurants") {
+                        return null;
+                    }
+                    return (
+                        <Animated.View style={[isRestaurantVisible || isNearEnd ? styles.shadowBottom : null]}>
+                            <SortingAndFilters menuTitle='Sort' options={filtersOption} />
+                        </Animated.View>
+                    )
+                }}
             />
         </>
     );
