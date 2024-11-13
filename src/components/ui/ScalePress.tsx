@@ -8,11 +8,7 @@ interface ScalePressProps {
     style?: ViewStyle | ViewStyle[]
 }
 
-
-
 const ScalePress: FC<ScalePressProps> = ({ onLongPress, onPress, children, style }) => {
-
-
     const scaleValue = new Animated.Value(1);
     const onPressIn = () => {
         Animated.spring(scaleValue, {

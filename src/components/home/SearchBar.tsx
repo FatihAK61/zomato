@@ -47,6 +47,7 @@ const SearchBar = () => {
                             )
                         })}
                     </RollingContent>
+                    <Icon iconFamily='Ionicons' name='mic-outline' color={isVegMode ? Colors.active : Colors.primary} size={20} />
                 </TouchableOpacity>
 
                 <Pressable style={styles.vegMode} onPress={() => dispatch(setVegMode(!isVegMode))}>
