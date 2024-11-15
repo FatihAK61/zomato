@@ -1,4 +1,4 @@
-import { View, Text, Platform, FlatList } from 'react-native';
+import { View, Platform, FlatList } from 'react-native';
 import React, { FC } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { useStyles } from 'react-native-unistyles';
@@ -9,6 +9,7 @@ import RestaurantHeader from '@components/restaurant/RestaurantHeader';
 import SortingAndFilters from '@components/home/SortingAndFilters';
 import { restaurantItemsData, restaurantsItemfiltersOption } from '@utils/dummyData';
 import DottedLine from '@components/ui/DottedLine';
+import FoodCard from '@components/restaurant/FoodCard';
 
 const RestaurantScreen: FC = () => {
     const route = useRoute() as any;
@@ -17,11 +18,9 @@ const RestaurantScreen: FC = () => {
     const insets = useSafeAreaInsets();
     const renderItem = ({ item }: any) => {
         return (
-            <View></View>
+            <FoodCard item={item} restaurant={restaurant} />
         )
     }
-
-
 
     return (
         <>

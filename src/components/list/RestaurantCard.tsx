@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import React, { FC } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { restaurantStyles } from '@unistyles/restuarantStyles';
@@ -6,6 +6,7 @@ import ScalePress from '@components/ui/ScalePress';
 import { navigate } from '@utils/NavigationUtils';
 import CustomText from '@components/global/CustomText';
 import StarRating from '@components/ui/StarRating';
+import DottedLine from '@components/ui/DottedLine';
 
 const RestaurantCard: FC<{ item: any }> = ({ item }) => {
 
@@ -29,6 +30,14 @@ const RestaurantCard: FC<{ item: any }> = ({ item }) => {
                         </View>
                         <StarRating rating={item?.rating} />
                     </View>
+                    <DottedLine />
+                    {
+                        item?.discount && (
+                            <CustomText>
+                                {item.discount} {item?.discountAmount && `• ${item?.discountAmount}`}
+                            </CustomText>
+                        )
+                    }
                 </View>
             </View>
         </ScalePress>
