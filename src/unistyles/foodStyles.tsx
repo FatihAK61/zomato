@@ -64,7 +64,7 @@ export const foodStyles = createStyleSheet(({ device, colors, border }) => ({
         bottom: -10,
     },
     addButtonContainer: (isAdded: boolean) => ({
-        width: 120,
+        width: 130,
         borderWidth: 0.7,
         borderRadius: 10,
         bottom: -12,
@@ -92,6 +92,6 @@ export const foodStyles = createStyleSheet(({ device, colors, border }) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingHorizontal: 10,
+        paddingHorizontal: 10
     }
 }))
