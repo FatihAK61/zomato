@@ -1,5 +1,5 @@
-import { View, TouchableOpacity } from 'react-native';
-import React, { FC, useCallback } from 'react';
+import { View, TouchableOpacity, Text } from 'react-native';
+import React, { FC, useCallback, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '@states/reduxHook';
 import { useStyles } from 'react-native-unistyles';
 import { foodStyles } from '@unistyles/foodStyles';
@@ -10,18 +10,28 @@ import ScalePress from '@components/ui/ScalePress';
 import Icon from '@components/global/Icon';
 import { RFValue } from 'react-native-responsive-fontsize';
 import AnimatedNumbers from 'react-native-animated-numbers';
+import CustomModal from '@components/modal/CustomModal';
+import AddItemModal from '@components/modal/AddItemModal';
 
 const AddButton: FC<{ item: any, restaurant: any }> = ({ item, restaurant }) => {
     const dispatch = useAppDispatch();
     const { styles } = useStyles(foodStyles);
     const cart = useAppSelector(selectRestaurantCartItem(restaurant?.id, item?.id));
+    const modalRef = useRef<any>(null);
+
+    const openAddModal = () => {
+        modalRef?.current?.openModal(
+            <AddItemModal item={item} onClose={() => modalRef.current?.closeModal()} restaurant={restaurant} />
+        )
+    }
+
     const addCartHandler = useCallback(() => {
         if (item?.isCustomizable) {
             if (cart !== null) {
                 console.log('Repeat modal')
                 return
             }
-            console.log('Open modal')
+            openAddModal()
         } else {
             dispatch(addItemToCart({ restaurant: restaurant, item: { ...item, customisation: [] } }))
         }
@@ -40,6 +50,7 @@ const AddButton: FC<{ item: any, restaurant: any }> = ({ item, restaurant }) => 
 
     return (
         <>
+            <CustomModal ref={modalRef} />
             <View style={styles.addButtonContainer(cart !== null)}>
                 {cart ? (
                     <View style={styles.selectedContainer}>
