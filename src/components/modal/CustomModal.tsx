@@ -22,13 +22,10 @@ const CustomModal = forwardRef((props, ref) => {
 
     return (
         <Modal transparent visible={visible} animationType='slide' onRequestClose={() => setVisible(false)}>
-            {Platform.OS === 'ios' && (
-                <BlurView style={styles.absolute} blurType='light' blurAmount={10} />
-            )}
+            <BlurView style={styles.absolute} blurType='light' blurAmount={10} />
             <View style={styles.modalContainer}>
                 <View style={styles.contentContainer}>
                     <TouchableOpacity style={styles.closeIcon} onPress={() => { setVisible(false) }}>
-
                         <Icon name='close' size={24} iconFamily='Ionicons' color='#fff' />
                     </TouchableOpacity>
                     {
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'flex-end',
-        filter: Platform.OS === 'android' ? [{ blur: 4 }] : undefined,
+        filter: Platform.OS === 'android' ? [{ blur: 0.2 }] : undefined,
     },
     contentContainer: {
         width: '100%',

@@ -70,10 +70,79 @@ export const cartSlice = createSlice({
             if (restaurantCart.items.length === 0) {
                 state.carts = state.carts.filter((cart) => cart.restaurant.id !== restaurant_id);
             }
+        },
+        addCustomizableItem: (
+            state,
+            action: PayloadAction<{
+                restaurant: RestaurantDetails;
+                item: CartItem;
+                customization: {
+                    quantity: number;
+                    price: number;
+                    customizationOptions: any[];
+                }
+            }>) => {
+            const { restaurant, item, customization } = action.payload;
+            const existingRestaurantCart = state.carts.find((cart) => cart.restaurant.id === restaurant.id);
+            if (existingRestaurantCart) {
+                const existingItem = existingRestaurantCart?.items?.find(cartItem => cartItem?.id === item?.id) as any;
+                if (existingItem) {
+                    const excistingCustomizationIndex = existingItem?.customizations?.findIndex(
+                        (cust: any) => JSON.stringify(cust.customizationOptions) === JSON.stringify(customization.customizationOptions))
+                    if (excistingCustomizationIndex !== undefined && excistingCustomizationIndex !== -1) {
+                        const existingCustomization = existingItem?.customizations[excistingCustomizationIndex];
+                        existingCustomization.quantitiy += customization?.quantity
+                        existingCustomization.cartPrice += customization?.price
+                    } else {
+                        const newCustomizationId = `c${(existingItem?.customizations?.length || 0) + 1}`;
+                        existingItem?.customizations?.push({
+                            id: newCustomizationId,
+                            ...customization,
+                            quantity: customization?.quantity,
+                            cartPrice: customization?.price,
+                            price: customization?.price / customization?.quantity
+                        })
+                    }
+                    existingItem.quantity += customization?.quantity;
+                    existingItem.cartPrice = (existingItem?.cartPrice || 0) + existingItem?.price
+                } else {
+                    const newCustomizationId = `c1`;
+                    state.carts.push({
+                        restaurant,
+                        items: [{
+                            ...item, quantity: customization.quantity, cartPrice: customization?.price, customizations: [
+                                {
+                                    id: newCustomizationId,
+                                    ...customization,
+                                    quantity: customization?.quantity,
+                                    cartPrice: customization.price,
+                                    price: customization.price / customization.quantity
+                                }
+                            ]
+                        }]
+                    });
+                }
+            } else {
+                const newCustomizationId = `c1`;
+                state.carts.push({
+                    restaurant,
+                    items: [{
+                        ...item, quantity: customization.quantity, cartPrice: customization?.price, customizations: [
+                            {
+                                id: newCustomizationId,
+                                ...customization,
+                                quantity: customization?.quantity,
+                                cartPrice: customization.price,
+                                price: customization.price / customization.quantity
+                            }
+                        ]
+                    }]
+                });
+            }
         }
     }
 })
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, addCustomizableItem } = cartSlice.actions;
 export const selectCart = (state: RootState) => state.cart;
 
 
